@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+      lang="en" class="h-100" data-bs-theme="auto">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>금연챌린지</title>
+    <meta name="description" content="66일 금연일기를 통해 습관화 시키는게 목표인 서비스입니다.">
+    <meta name="keywords" content="금연,금연일기,습관,66일">
+    <meta name="robots" content="index,follow">
+    <link rel="canonical" href="https://smoking.streamdiaries.com">
+
+    <script th:src="@{/js/home.js}"></script>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
+    <link th:href="@{/css/home.css}" rel="stylesheet" type="text/css">
+    <link th:href="@{/css/diary.css}" rel="stylesheet" type="text/css">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.countdown/2.2.0/jquery.countdown.min.js"
+            integrity="sha512-lteuRD+aUENrZPTXWFRPTBcDDxIGWe5uu0apPEn+3ZKYDwDaEErIK9rvR0QzUGmUQ55KFE2RqGTVoZsKctGMVw=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+</head>
+
+<body class="d-flex h-100 text-center text-bg-dark">
+
+<div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+    <header class="mb-auto">
+        <div>
+            <a th:href="@{/}"><h3 class="float-md-start mb-0">금연챌린지</h3></a>
+            <nav class="nav nav-masthead justify-content-center float-md-end">
+                <!--<a class="nav-link fw-bold py-1 px-0 active" aria-current="page" th:onclick="clickMenu(event)"
+                   href="javascript:void(0)">Home</a>-->
+                <a class="nav-link fw-bold py-1 px-0" th:href="@{/my-page}" sec:authorize="isAuthenticated()">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+                         style="color:white;"
+                         class="bi bi-person" viewBox="0 0 16 16">
+                        <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0m4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4m-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10s-3.516.68-4.168 1.332c-.678.678-.83 1.418-.832 1.664z"/>
+                    </svg>
+                </a>
+
+                <a th:href="@{/logout}" class="nav-link fw-bold py-1 px-0"
+                   sec:authorize="isAuthenticated()">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" width="30" height="30">
+                        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                        <g id="SVGRepo_iconCarrier">
+                            <path d="M15 12L2 12M2 12L5.5 9M2 12L5.5 15" stroke="#e4e9f5" stroke-width="1.5"
+                                  stroke-linecap="round" stroke-linejoin="round"></path>
+                            <path d="M9.00195 7C9.01406 4.82497 9.11051 3.64706 9.87889 2.87868C10.7576 2 12.1718 2 15.0002 2L16.0002 2C18.8286 2 20.2429 2 21.1215 2.87868C22.0002 3.75736 22.0002 5.17157 22.0002 8L22.0002 16C22.0002 18.8284 22.0002 20.2426 21.1215 21.1213C20.3531 21.8897 19.1752 21.9862 17 21.9983M9.00195 17C9.01406 19.175 9.11051 20.3529 9.87889 21.1213C10.5202 21.7626 11.4467 21.9359 13 21.9827"
+                                  stroke="#e4e9f5" stroke-width="1.5" stroke-linecap="round"></path>
+                        </g>
+                    </svg>
+                </a>
+
+                <a th:href="@{/oauth2-login}" class="nav-link fw-bold py-1 px-0"
+                   sec:authorize="!isAuthenticated()" style="color: white">
+                    로그인
+                </a>
+
+            </nav>
+        </div>
+    </header>
+
+    <main>
+
+        <div class="py-5">
+            <div class="row">
+                <div class="mx-auto">
+
+
+                    <div class="card" data-bs-theme="light">
+                        <h5 class="card-header pt-3 pb-3">66일 금연일기</h5>
+                        <div class="card-body">
+                            <div class="day-group" th:each="dayGroup : ${totalDays}">
+                                <span th:onclick="|location.href=${day.id} != null ? '/diary/re/' + ${day.id} : '/diary'|" class="day" th:each="day : ${dayGroup}" th:text="${day.day}" th:classappend="${day.isCompleted} ? 'complete' : ''"></span>
+                            </div>
+
+
+                            <h5 class="card-title mt-3">66일의 법칙</h5>
+                            <p class="card-text" style="font-size : 13px">영국 런던의 한 대학 심리학자 필리파 랠리(Phillippa Lally)는 그의
+                                연구 팀과 함께 한 가지 행동을 며칠 간 반복해야 습관이 되는지를 측정하는 연구를 한 결과 평균 66일 꾸준히 행동하면 원하는 행동이 습관으로 만들어질 수
+                                있다는 점을 발견했다.</p>
+                            <button class="btn btn-primary" th:onclick="'location.href=\'/diary/post\''">일기쓰기</button>
+                            <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#initDiaryModal">초기화</button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <footer class="mt-auto">
+        <p>Created <a href="https://getbootstrap.com/" class="text-white">Bootstrap</a>, by <a
+                href="mailto: tsukeman@naver.com" class="text-white">tsukeman@naver.com</a></p>
+    </footer>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="initDiaryModal" tabindex="-1" aria-labelledby="initDiaryLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="initDiaryLabel">경고창</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>확인을 누르시면 기존의 기록이 모두 삭제됩니다.</p>
+                <p>계속 진행하시겠습니까?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
+                <button type="button" class="btn btn-primary" onclick="initDiary()">확인</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<input type="hidden" name="message" th:value="${message}"/>
+</body>
+
+<script>
+    function initDiary() {
+        let form = document.createElement('form')
+        form.action = '/diary/reset'
+        form.method = 'POST'
+
+        document.body.appendChild(form)
+        form.submit()
+    }
+
+    let message = document.querySelector('input[name="message"]').value
+    if (message) {
+        alert(message)
+    }
+</script>
+
+
+</html>

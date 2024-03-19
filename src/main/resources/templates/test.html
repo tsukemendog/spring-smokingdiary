@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en" class="h-100" data-bs-theme="auto">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Home</title>
+
+    <script th:src="@{/js/home.js}"></script>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/cover/">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
+    <link th:href="@{/css/home.css}" rel="stylesheet" type="text/css">
+    <link th:href="@{/css/timer.css}" rel="stylesheet" type="text/css">
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+            crossorigin="anonymous"></script>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.countdown/2.2.0/jquery.countdown.min.js"
+            integrity="sha512-lteuRD+aUENrZPTXWFRPTBcDDxIGWe5uu0apPEn+3ZKYDwDaEErIK9rvR0QzUGmUQ55KFE2RqGTVoZsKctGMVw=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+</head>
+
+<body class="d-flex h-100 text-center text-bg-dark">
+
+<div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+    <header class="mb-auto">
+        <div>
+            <h3 class="float-md-start mb-0">금연어드벤처</h3>
+            <nav class="nav nav-masthead justify-content-center float-md-end">
+                <!--<a class="nav-link fw-bold py-1 px-0 active" aria-current="page" th:onclick="clickMenu(event)"
+                   href="javascript:void(0)">Home</a>-->
+                <a class="nav-link fw-bold py-1 px-0" href="javascript:void(0)" sec:authorize="isAuthenticated()">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" style="color:white;"
+                         class="bi bi-person" viewBox="0 0 16 16">
+                        <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0m4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4m-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10s-3.516.68-4.168 1.332c-.678.678-.83 1.418-.832 1.664z"/>
+                    </svg>
+                </a>
+                <a class="nav-link fw-bold py-1 px-0" href="javascript:void(0)" sec:authorize="isAuthenticated()">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" style="color:white;"
+                         class="bi bi-door-open" viewBox="0 0 16 16">
+                        <path d="M8.5 10c-.276 0-.5-.448-.5-1s.224-1 .5-1 .5.448.5 1-.224 1-.5 1"/>
+                        <path d="M10.828.122A.5.5 0 0 1 11 .5V1h.5A1.5 1.5 0 0 1 13 2.5V15h1.5a.5.5 0 0 1 0 1h-13a.5.5 0 0 1 0-1H3V1.5a.5.5 0 0 1 .43-.495l7-1a.5.5 0 0 1 .398.117M11.5 2H11v13h1V2.5a.5.5 0 0 0-.5-.5M4 1.934V15h6V1.077z"/>
+                    </svg>
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="px-3">
+
+
+        <div class="py-5">
+            <div class="row">
+                <div class="mx-auto">
+
+
+                    <!-- Countdown 4-->
+                    <div class="rounded bg-timer text-white shadow p-5 text-center mb-5">
+                        <p class="mb-0 font-weight-bold text-uppercase">Let's use some call to actions</p>
+                        <div id="clock-c" class="countdown py-4"></div>
+
+                        <!-- Call to actions -->
+                        <ul class="list-inline">
+                            <li class="list-inline-item pt-2">
+                                <button id="btn-reset" type="button" class="btn btn-demo"><i
+                                        class="glyphicon glyphicon-repeat"></i>Reset
+                                </button>
+                            </li>
+                            <li class="list-inline-item pt-2">
+                                <button id="btn-pause" type="button" class="btn btn-demo"><i
+                                        class="glyphicon glyphicon-repeat"></i>Pause
+                                </button>
+                            </li>
+                            <li class="list-inline-item pt-2">
+                                <button id="btn-resume" type="button" class="btn btn-demo"><i
+                                        class="glyphicon glyphicon-repeat"></i>Resume
+                                </button>
+                            </li>
+                        </ul>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <footer class="mt-auto text-white-50">
+        <p>Cover template for <a href="https://getbootstrap.com/" class="text-white">Bootstrap</a>, by <a
+                href="https://twitter.com/mdo" class="text-white">@mdo</a>.</p>
+    </footer>
+</div>
+
+</body>
+
+
+<script>
+
+    $(function () {
+
+        let test = get15dayFromNow()
+        console.log('get15dayFromNow() : ' + get15dayFromNow())
+        /* =========================================
+            COUNTDOWN 1
+         ========================================= */
+        $('#clock').countdown('2021/1/10').on('update.countdown', function (event) {
+            var $this = $(this).html(event.strftime(''
+                + '<span class="h1 font-weight-bold">%D</span> Day%!d'
+                + '<span class="h1 font-weight-bold">%H</span> Hr'
+                + '<span class="h1 font-weight-bold">%M</span> Min'
+                + '<span class="h1 font-weight-bold">%S</span> Sec'));
+        });
+
+        /* =========================================
+            COUNTDOWN 2
+         ========================================= */
+        $('#clock-a').countdown(get15dayFromNow()).on('update.countdown', function (event) {
+            var $this = $(this).html(event.strftime(''
+                + '<span class="h1 font-weight-bold">%w</span> week%!w'
+                + '<span class="h1 font-weight-bold">%D</span> Days'));
+        });
+
+        /* =========================================
+            COUNTDOWN 3
+         ========================================= */
+        $('#clock-b').countdown(get15dayFromNow()).on('update.countdown', function (event) {
+            var $this = $(this).html(event.strftime(''
+                + '<div class="holder m-2"><span class="h1 font-weight-bold">%D</span> Day%!d</div>'
+                + '<div class="holder m-2"><span class="h1 font-weight-bold">%H</span> Hr</div>'
+                + '<div class="holder m-2"><span class="h1 font-weight-bold">%M</span> Min</div>'
+                + '<div class="holder m-2"><span class="h1 font-weight-bold">%S</span> Sec</div>'));
+        });
+
+
+        /* =========================================
+            COUNTDOWN 4
+         ========================================= */
+        function get15dayFromNow() {
+            return new Date(new Date().valueOf() + 20 * 24 * 60 * 60 * 1000);
+        }
+
+        $('#clock-c').countdown(get15dayFromNow(), function (event) {
+            var $this = $(this).html(event.strftime(''
+                + '<span class="h1 font-weight-bold">%D</span> Day%!d'
+                + '<span class="h1 font-weight-bold">%H</span> Hr'
+                + '<span class="h1 font-weight-bold">%M</span> Min'
+                + '<span class="h1 font-weight-bold">%S</span> Sec'));
+        });
+
+        /* =========================================
+            CALL TO ACTIONS FOR COUNTDOWN 4
+         ========================================= */
+        $('#btn-reset').click(function () {
+            $('#clock-c').countdown(get15dayFromNow());
+        });
+        $('#btn-pause').click(function () {
+            $('#clock-c').countdown('pause');
+        });
+        $('#btn-resume').click(function () {
+            $('#clock-c').countdown('resume');
+        });
+
+    });
+
+
+</script>
+
+<script>
+    function clickMenu(event) {
+        document.querySelectorAll('.nav-link').forEach(function (el) {
+            el.classList.remove('active');
+        });
+        event.target.classList.add('active');
+        console.log('active')
+    }
+</script>
+</body>
+
+</html>

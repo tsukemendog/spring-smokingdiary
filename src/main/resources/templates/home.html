@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5" lang="en" class="h-100" data-bs-theme="auto">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>금연챌린지</title>
+    <meta name="description" content="66일 금연일기를 통해 습관화 시키는게 목표인 서비스입니다.">
+    <meta name="keywords" content="금연,금연일기,습관,66일">
+    <meta name="robots" content="index,follow">
+    <link rel="canonical" href="https://smoking.streamdiaries.com">
+    <meta name="naver-site-verification" content="f8f2316969a2f58195b9bcfcf441c401dd1746cb" />
+
+    <script th:src="@{/js/home.js}"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
+    <link th:href="@{/css/home.css}" rel="stylesheet" type="text/css">
+    <link th:href="@{/css/timer.css}" rel="stylesheet" type="text/css">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.countdown/2.2.0/jquery.countdown.min.js"
+            integrity="sha512-lteuRD+aUENrZPTXWFRPTBcDDxIGWe5uu0apPEn+3ZKYDwDaEErIK9rvR0QzUGmUQ55KFE2RqGTVoZsKctGMVw=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-565HVKP2R9"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-565HVKP2R9');
+    </script>
+
+</head>
+
+<body class="d-flex h-100 text-center text-bg-dark">
+
+<div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+    <header class="mb-auto">
+        <div>
+            <a th:href="@{/}"><h3 class="float-md-start mb-0">금연챌린지</h3></a>
+            <nav class="nav nav-masthead justify-content-center float-md-end">
+                <!--<a class="nav-link fw-bold py-1 px-0 active" aria-current="page" th:onclick="clickMenu(event)"
+                   href="javascript:void(0)">Home</a>-->
+                <a class="nav-link fw-bold py-1 px-0" sec:authorize="isAuthenticated()" th:href="@{/my-page}">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+                         style="color:white;"
+                         class="bi bi-person" viewBox="0 0 16 16">
+                        <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0m4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4m-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10s-3.516.68-4.168 1.332c-.678.678-.83 1.418-.832 1.664z"/>
+                    </svg>
+                </a>
+
+                <a th:href="@{/logout}" class="nav-link fw-bold py-1 px-0" href="javascript:void(0)" sec:authorize="isAuthenticated()">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" width="30" height="30">
+                        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                        <g id="SVGRepo_iconCarrier">
+                            <path d="M15 12L2 12M2 12L5.5 9M2 12L5.5 15" stroke="#e4e9f5" stroke-width="1.5"
+                                  stroke-linecap="round" stroke-linejoin="round"></path>
+                            <path d="M9.00195 7C9.01406 4.82497 9.11051 3.64706 9.87889 2.87868C10.7576 2 12.1718 2 15.0002 2L16.0002 2C18.8286 2 20.2429 2 21.1215 2.87868C22.0002 3.75736 22.0002 5.17157 22.0002 8L22.0002 16C22.0002 18.8284 22.0002 20.2426 21.1215 21.1213C20.3531 21.8897 19.1752 21.9862 17 21.9983M9.00195 17C9.01406 19.175 9.11051 20.3529 9.87889 21.1213C10.5202 21.7626 11.4467 21.9359 13 21.9827"
+                                  stroke="#e4e9f5" stroke-width="1.5" stroke-linecap="round"></path>
+                        </g>
+                    </svg>
+                </a>
+
+                <a th:href="@{/oauth2-login}" class="nav-link fw-bold py-1 px-0" href="javascript:void(0)" sec:authorize="!isAuthenticated()" style="color: white">
+                    로그인
+                </a>
+
+            </nav>
+        </div>
+    </header>
+
+    <main>
+
+
+        <div class="py-5">
+            <div class="row">
+                <div class="mx-auto">
+
+
+                    <!-- Countdown 4-->
+                    <div class="rounded bg-timer text-white shadow p-5 text-center mb-5" style="backdrop-filter: blur(10px);">
+                        <h5 class="mb-2 font-weight-bold">금연, 내 삶의 새로운 전환점</h5>
+                        <p class="mb-0 mt-3" th:if="${level == null}">첫 일기를 작성하면 타이머가 자동으로 시작됩니다.</p>
+                        <!--<p class="mb-0 font-weight-bold" th:if="${level != null}" th:text="${'현제 레벨 ' + level + ' 다음 레벨까지 남은 시간'}"></p>-->
+                        <p id="levelInfo" class="mb-0 font-weight-bold mt-3" th:if="${level != null}">다시 도전하시려면 재도전 버튼을 클릭해주세요!</p>
+
+
+                        <div id="clock-c" class="countdown py-4"></div>
+
+                        <!-- Call to actions -->
+                        <!--<ul class="list-inline">
+                            <li class="list-inline-item pt-2">
+                                <button id="btn-reset" type="button" class="btn btn-demo"><i
+                                        class="glyphicon glyphicon-repeat"></i>Reset
+                                </button>
+                            </li>
+                            <li class="list-inline-item pt-2">
+                                <button id="btn-pause" type="button" class="btn btn-demo"><i
+                                        class="glyphicon glyphicon-repeat"></i>Pause
+                                </button>
+                            </li>
+                            <li class="list-inline-item pt-2">
+                                <button id="btn-resume" type="button" class="btn btn-demo"><i
+                                        class="glyphicon glyphicon-repeat"></i>Resume
+                                </button>
+                            </li>
+                        </ul>-->
+
+                        <ul class="list-inline">
+                            <li class="list-inline-item pt-2">
+                                <!--<button id="btn-start" type="button" class="btn btn-demo" sec:authorize="isAuthenticated()" onclick="clickStart()">
+                                    <i class="glyphicon glyphicon-repeat"></i>시작
+                                </button>
+
+                                <button id="btn-start" type="button" class="btn btn-demo" sec:authorize="!isAuthenticated()" th:onclick="'location.href=\'/oauth2-login\''">
+                                    <i class="glyphicon glyphicon-repeat"></i>시작
+                                </button>-->
+
+
+
+                                <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#initDiaryModal" sec:authorize="isAuthenticated()" th:if="${level >= 10}">
+                                    초기화
+                                </button>
+                            </li>
+                            <li class="list-inline-item pt-2">
+                                <button id="btn-diary" type="button" class="btn btn-demo" th:onclick="'location.href=\'diary\''">
+                                    <i class="glyphicon glyphicon-repeat"></i>66일 일기쓰기
+                                </button>
+                            </li>
+                        </ul>
+
+                        <p class="mb-0 mt-3" style="font-size: 13px">※ 최종레벨은 10으로 총 6.6일 단위로 계산됩니다.</p>
+                        <p class="mb-0 mt-3 font-weight-bold" style="font-size: 13px">일기를 작성하지 않을시 기록이 초기화 됩니다.</p>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="initDiaryModal" tabindex="-1" aria-labelledby="initDiaryLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="initDiaryLabel">경고창</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>확인을 누르시면 기존의 기록이 모두 삭제됩니다.</p>
+                        <p>계속 진행하시겠습니까?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
+                        <button type="button" class="btn btn-primary" onclick="initDiary()">확인</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+    <input type="hidden" name="isStarted" th:value="${isStarted}">
+    <input type="hidden" name="isAuthentication" sec:authorize="isAuthenticated()">
+    <input type="hidden" name="level" th:value="${level}">
+    <footer class="mt-auto">
+        <p>Created <a href="https://getbootstrap.com/" class="text-white">Bootstrap</a>, by <a
+                href="mailto: tsukeman@naver.com" class="text-white">tsukeman@naver.com</a></p>
+    </footer>
+</div>
+
+</body>
+
+
+<script>
+
+    var duration = 0;
+    var isStarted = false
+
+    $(function () {
+
+        let isStarted = document.querySelector('input[name="isStarted"]').value === 'true'
+        let isAuthentication = document.querySelector('input[name="isAuthentication"]')
+        let level = document.querySelector('input[name="level"]').value;
+
+        console.log('isStarted : ' + isStarted)
+
+        if (level !== '10') {
+            if (isAuthentication) {
+                if (!isStarted) {
+                    //document.getElementById('btn-start').style.display = 'block';
+                    //document.getElementById('btn-give-up').style.display = 'none';
+                } else {
+                    //document.getElementById('btn-start').style.display = 'none';
+                    //document.getElementById('btn-give-up').style.display = 'block';
+                }
+
+                levelUp(initializeCountdown)
+                console.log('yes authentication')
+            } else {
+                initializeCountdown()
+                console.log('no authentication')
+            }
+        }
+
+
+    });
+
+
+</script>
+
+<script>
+
+    async function initTime() {
+        duration = await getRemainDate()
+        return new Date(new Date().valueOf() + duration);
+    }
+
+    async function initializeCountdown() {
+        var endTime = await initTime();
+        $('#clock-c').countdown(endTime, function (event) {
+            var $this = $(this).html(event.strftime(''
+                + '<span class="h1 font-weight-bold">%D</span> Day%!d'
+                + '<span class="h1 font-weight-bold">%H</span> Hr'
+                + '<span class="h1 font-weight-bold">%M</span> Min'
+                + '<span class="h1 font-weight-bold">%S</span> Sec'));
+        });
+        if (!isStarted) {
+            $('#clock-c').countdown('pause');
+        }
+    }
+    function clickMenu(event) {
+        document.querySelectorAll('.nav-link').forEach(function (el) {
+            el.classList.remove('active');
+        });
+        event.target.classList.add('active');
+    }
+
+    function getRemainDate() {
+        return new Promise((resolve, reject) => {
+            fetch('/remain-time', {
+                method: 'GET',
+            }).then(response => {
+                response.json().then(data => {
+                    duration = Number(data.duration)
+                    isStarted = data.isStarted
+
+                    if (isStarted) {
+                        $('#clock-c').countdown(new Date().valueOf() + duration).on('finish.countdown', function() {
+                            levelUp(() => {})
+                            console.log('타이머 끝');
+                        });
+                    }
+
+                    resolve(Number(data.duration))
+                })
+            }).catch(error => {
+                // 오류 처리
+                alert(error)
+                console.error('Error:', error);
+            });
+        })
+    }
+
+    function initRemainDate() {
+        fetch('/remain-time', {
+            method: 'GET',
+        }).then(response => {
+            response.json().then(data => {
+
+                let duration = Number(data.duration)
+                let level = data.level
+
+                $('#clock-c').countdown(new Date(new Date().valueOf() + duration), function (event) {
+                    $(this).html(event.strftime(''
+                        + '<span class="h1 font-weight-bold">%D</span> Day%!d'
+                        + '<span class="h1 font-weight-bold">%H</span> Hr'
+                        + '<span class="h1 font-weight-bold">%M</span> Min'
+                        + '<span class="h1 font-weight-bold">%S</span> Sec'));
+                });
+
+                let levelInfo = document.getElementById('levelInfo');
+                levelInfo.textContent = data.levelMessage
+            })
+        }).catch(error => {
+            // 오류 처리
+            alert(error)
+            console.error('Error:', error);
+        });
+    }
+
+    function clickStart() {
+        fetch('/start', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                key1: 'value1',
+                key2: 'value2'
+            })
+        })
+            .then(response => {
+                if (response.status === 200) {
+                    return response.text(); // 성공적인 응답의 경우, 텍스트로 변환
+                } else {
+                    return response.text().then(data => {
+                        // 오류 메시지를 포함한 예외 발생
+                        throw new Error(data);
+                    });
+                }
+            })
+            .then(data => {
+                // 성공적인 응답 데이터 처리
+                duration = Number(data);
+                if (!isNaN(duration)) {
+
+                    //document.getElementById('btn-start').style.display = 'none';
+                    //document.getElementById('btn-give-up').style.display = 'block';
+
+
+                    $('#clock-c').countdown(new Date().valueOf() + duration).on('finish.countdown', function() {
+                        levelUp(() => {})
+                        console.log('타이머 끝');
+                    });
+                } else {
+                    throw new Error('Invalid duration');
+                }
+            })
+            .catch(error => {
+                // 오류 처리
+                alert(error)
+                console.error('Error:', error);
+            });
+    }
+
+    function levelUp(callback) {
+        fetch('/level', {
+            method: 'POST',
+        }).then(response => {
+            if (response.status === 200) {
+
+                response.json().then(data => {
+                    console.log('level result : ' + JSON.stringify(data))
+                    let levelInfo = document.getElementById('levelInfo');
+                    if (levelInfo) {
+                        console.log('레벨 메시지 변경')
+                        levelInfo.textContent = data.levelMessage;
+                        let level = data.level;
+
+                        duration = data.duration
+
+                        if (level < 10) {
+                            $('#clock-c').countdown(new Date(new Date().valueOf() + duration), function (event) {
+                                $(this).html(event.strftime(''
+                                    + '<span class="h1 font-weight-bold">%D</span> Day%!d'
+                                    + '<span class="h1 font-weight-bold">%H</span> Hr'
+                                    + '<span class="h1 font-weight-bold">%M</span> Min'
+                                    + '<span class="h1 font-weight-bold">%S</span> Sec'));
+                            });
+                        } else {
+                            location.href='/'
+
+                        }
+                    }
+
+                    console.log('레벨업!')
+                })
+
+                callback()
+            }
+        })
+    }
+
+    function initDiary() {
+        let form = document.createElement('form')
+        form.action = '/diary/reset'
+        form.method = 'POST'
+
+        document.body.appendChild(form)
+        form.submit()
+    }
+</script>
+
+</html>
