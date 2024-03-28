@@ -7,6 +7,7 @@ import io.github.tsukemendog.nondesire.service.IPLogsService;
 import io.github.tsukemendog.nondesire.service.MemberService;
 import lombok.AllArgsConstructor;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.env.Environment;
 import org.springframework.http.ResponseEntity;
@@ -37,15 +38,19 @@ import java.util.StringJoiner;
 import io.github.tsukemendog.nondesire.enums.Level;
 
 @Controller
-@AllArgsConstructor
 public class MainController {
 
-    private final MemberService memberService;
-    private final DailyService dailyService;
-    private final OAuth2AuthorizedClientService authorizedClientService;
-    private final Environment environment;
-    private final IPLogsService ipLogsService;
-
+    @Autowired
+    private MemberService memberService;
+    @Autowired
+    private DailyService dailyService;
+    @Autowired
+    private OAuth2AuthorizedClientService authorizedClientService;
+    @Autowired
+    private Environment environment;
+    @Autowired
+    private IPLogsService ipLogsService;
+    
     @Value(value = "${current-domain}")
 	private String currentDomain;
 
