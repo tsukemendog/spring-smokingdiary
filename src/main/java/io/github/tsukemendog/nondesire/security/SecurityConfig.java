@@ -30,7 +30,8 @@ public class SecurityConfig {
                 .and()
 
                 .authorizeHttpRequests((authorize) -> authorize
-                        .mvcMatchers("/", "/css/**", "/js/**", "/image/**","/favicon.ico","/robots.txt","/oauth2-login", "/diary", "/remain-time", "/logo192.png", "/logo512.png", "/manifest.json")
+                        .mvcMatchers("/", "/css/**", "/js/**", "/.well-known/**",
+                         "/image/**","/favicon.ico","/robots.txt","/oauth2-login", "/diary", "/remain-time", "/logo192.png", "/logo512.png", "/manifest.json")
                         .permitAll().anyRequest().authenticated()
                 ) //.authenticate() 로 변경
 
